@@ -1,0 +1,40 @@
+.profileContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+.statisticsSection {
+  margin-bottom: 32px;
+}
+
+.tabs {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.notAuthenticated {
+  text-align: center;
+  padding: 100px 0;
+  font-size: 18px;
+  color: #999;
+}

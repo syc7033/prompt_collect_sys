@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中文显示测试页面</title>
+  <style>
+    html, body {
+      direction: ltr !important;
+      writing-mode: horizontal-tb !important;
+      text-orientation: mixed !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    
+    .paragraph {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #1890ff;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-right: 8px;
+    }
+    
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+    }
+    
+    .col {
+      flex: 1;
+      padding: 0 10px;
+      min-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="title">中文显示测试页面</div>
+      <div class="paragraph">
+        这是一个测试页面，用于检查中文文本的显示方式。这段文本应该是水平显示的，从左到右阅读。
+        如果您看到这段文本是竖排显示的，那么说明存在浏览器或系统设置问题。
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="title">测试卡片 1</div>
+          <div class="paragraph">
+            这是第一列的内容，用于测试布局。这段中文文本应该水平显示，而不是竖排。
+          </div>
+          <a href="#" class="button">按钮 1</a>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card">
+          <div class="title">测试卡片 2</div>
+          <div class="paragraph">
+            这是第二列的内容，用于测试布局。这段中文文本应该水平显示，而不是竖排。
+          </div>
+          <a href="#" class="button">按钮 2</a>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card">
+          <div class="title">测试卡片 3</div>
+          <div class="paragraph">
+            这是第三列的内容，用于测试布局。这段中文文本应该水平显示，而不是竖排。
+          </div>
+          <a href="#" class="button">按钮 3</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="title">调试信息</div>
+      <div class="paragraph">
+        <div id="debug-info">加载中...</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 显示调试信息
+    window.onload = function() {
+      const debugInfo = document.getElementById('debug-info');
+      
+      const info = [
+        `窗口尺寸: ${window.innerWidth} x ${window.innerHeight}`,
+        `文档元素: ${document.documentElement.clientWidth} x ${document.documentElement.clientHeight}`,
+        `文档方向: ${document.dir || getComputedStyle(document.documentElement).direction}`,
+        `文本对齐: ${getComputedStyle(document.documentElement).textAlign}`,
+        `书写模式: ${getComputedStyle(document.documentElement).writingMode}`,
+        `HTML书写模式: ${getComputedStyle(document.documentElement).writingMode}`,
+        `BODY书写模式: ${getComputedStyle(document.body).writingMode}`
+      ];
+      
+      debugInfo.innerHTML = info.join('<br>');
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+通用单数据库迁移配置
+
+此目录包含数据库迁移脚本，用于管理数据库结构的变更。
+
+使用方法：
+1. 创建迁移脚本: alembic revision --autogenerate -m "描述信息"
+2. 应用迁移: alembic upgrade head
+3. 回滚迁移: alembic downgrade -1
+4. 查看迁移历史: alembic history
+
+迁移脚本位于 versions 目录中。

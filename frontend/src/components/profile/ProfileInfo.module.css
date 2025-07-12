@@ -1,0 +1,42 @@
+.profileCard {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.profileHeader {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  margin-right: 24px;
+}
+
+.profileInfo {
+  flex: 1;
+}
+
+.profileInfo h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.username {
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.bio {
+  margin-bottom: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.editButton {
+  margin-top: 8px;
+}
+
+.descriptions {
+  margin-top: 16px;
+}

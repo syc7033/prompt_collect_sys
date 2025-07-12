@@ -1,0 +1,10 @@
+{
+  "../components/prompts/PromptCard.tsx -> ../../services/prompts": {
+    "id": "../components/prompts/PromptCard.tsx -> ../../services/prompts",
+    "files": []
+  },
+  "../components/prompts/PromptCard.tsx -> antd": {
+    "id": "../components/prompts/PromptCard.tsx -> antd",
+    "files": []
+  }
+}

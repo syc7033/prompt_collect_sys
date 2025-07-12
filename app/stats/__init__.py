@@ -1,0 +1,1 @@
+# Stats module initialization

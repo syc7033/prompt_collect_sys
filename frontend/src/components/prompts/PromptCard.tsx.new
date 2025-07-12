@@ -1,0 +1,350 @@
+import React from 'react';
+import { Card, Tag, Space, Button, Typography, Avatar } from 'antd';
+import { EditOutlined, DeleteOutlined, UserOutlined, ForkOutlined } from '@ant-design/icons';
+import Link from 'next/link';
+import { Prompt } from '../../services/prompts';
+
+const { Title, Paragraph, Text } = Typography;
+
+interface PromptCardProps {
+  prompt: Prompt;
+  onDelete?: (id: string) => void;
+  showActions?: boolean;
+}
+
+const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions = true }) => {
+  const { id, title, description, tags, creator, version, created_at, updated_at } = prompt;
+  
+  // 格式化日期
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  return (
+    <Card 
+      className="prompt-card"
+      style={{ 
+        borderRadius: '8px', 
+        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+        marginBottom: '20px',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+      title={
+        <Link href={`/prompts/${id}`}>
+          <a style={{ 
+            direction: 'ltr', 
+            writingMode: 'horizontal-tb',
+            textAlign: 'left',
+            display: 'block',
+            width: '100%'
+          }}>
+            <Title 
+              level={4} 
+              style={{ 
+                fontSize: '18px', 
+                marginBottom: '10px',
+                direction: 'ltr',
+                writingMode: 'horizontal-tb',
+                textAlign: 'left',
+                whiteSpace: 'normal',
+                wordBreak: 'break-word'
+              }}
+            >
+              {title}
+            </Title>
+          </a>
+        </Link>
+      }
+      extra={
+        <Space>
+          <Avatar icon={<UserOutlined />} size="small" />
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb'
+            }}
+          >
+            {creator.username}
+          </Text>
+        </Space>
+      }
+      headStyle={{ 
+        padding: '16px 20px',
+        borderBottom: '1px solid #f0f0f0',
+        direction: 'ltr',
+        writingMode: 'horizontal-tb'
+      }}
+      bodyStyle={{ 
+        padding: '20px',
+        direction: 'ltr',
+        writingMode: 'horizontal-tb',
+        display: 'flex',
+        flexDirection: 'column',
+        flex: '1 1 auto'
+      }}
+    >
+      {/* 描述部分 */}
+      <div style={{ flex: '0 0 auto', height: '80px', marginBottom: '16px' }}>
+        <Paragraph 
+          ellipsis={{ rows: 2 }}
+          style={{ 
+            fontSize: '16px', 
+            lineHeight: '1.8',
+            direction: 'ltr',
+            writingMode: 'horizontal-tb',
+            textAlign: 'left'
+          }}
+        >
+          {description}
+        </Paragraph>
+      </div>
+      
+      {/* 标签部分 */}
+      <div style={{ flex: '0 0 auto', minHeight: '60px', marginBottom: '16px' }}>
+        {tags && tags.map(tag => (
+          <Tag 
+            key={tag} 
+            color="blue"
+            style={{ 
+              margin: '0 8px 8px 0', 
+              padding: '4px 8px',
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb'
+            }}
+          >
+            {tag}
+          </Tag>
+        ))}
+      </div>
+      
+      {/* 分隔线 */}
+      <div 
+        style={{ 
+          margin: '20px 0 10px', 
+          height: '1px', 
+          background: '#f0f0f0',
+          width: '100%' 
+        }}
+      />
+      
+      {/* 卡片底部信息区域 */}
+      <div style={{ 
+        marginTop: '16px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+        width: '100%',
+        flex: '1 1 auto',
+        minHeight: '120px'
+      }}>
+        {/* 版本信息 */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          width: '100%',
+          padding: '0 2px'
+        }}>
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb',
+              marginRight: '8px',
+              flexShrink: 0,
+              fontWeight: 'bold'
+            }}
+          >
+            版本:
+          </Text>
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb',
+              wordBreak: 'break-all'
+            }}
+          >
+            {version}
+          </Text>
+        </div>
+        
+        {/* 创建时间 */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          width: '100%',
+          padding: '0 2px'
+        }}>
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb',
+              marginRight: '8px',
+              flexShrink: 0,
+              fontWeight: 'bold'
+            }}
+          >
+            创建于:
+          </Text>
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb',
+              wordBreak: 'break-all'
+            }}
+          >
+            {formatDate(created_at)}
+          </Text>
+        </div>
+        
+        {/* 更新时间 */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          width: '100%',
+          padding: '0 2px',
+          marginBottom: '5px'
+        }}>
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb',
+              marginRight: '8px',
+              flexShrink: 0,
+              fontWeight: 'bold',
+              minWidth: '75px'
+            }}
+          >
+            更新于:
+          </Text>
+          <Text 
+            type="secondary"
+            style={{ 
+              fontSize: '14px',
+              direction: 'ltr',
+              writingMode: 'horizontal-tb',
+              wordBreak: 'break-all'
+            }}
+          >
+            {formatDate(updated_at)}
+          </Text>
+        </div>
+      </div>
+
+      {/* 按钮区域 */}
+      {showActions && (
+        <div 
+          style={{ 
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '8px 0',
+            backgroundColor: '#fafafa',
+            borderTop: '1px solid #f0f0f0',
+            marginTop: 'auto'
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'flex-start', flex: 1 }}>
+            <Link href={`/prompts/${id}`}>
+              <Button 
+                type="text"
+                icon={<UserOutlined />}
+                style={{ 
+                  fontSize: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '28px',
+                  padding: '0 4px'
+                }}
+              >
+                查看
+              </Button>
+            </Link>
+            
+            <Link href={`/prompts/${id}/edit`}>
+              <Button 
+                type="text" 
+                icon={<EditOutlined />}
+                style={{ 
+                  fontSize: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '28px',
+                  padding: '0 4px'
+                }}
+              >
+                编辑
+              </Button>
+            </Link>
+          </div>
+          
+          <div style={{ display: 'flex', justifyContent: 'center', flex: 1 }}>
+            <Link href={`/prompts/${id}/fork`}>
+              <Button 
+                type="text" 
+                icon={<ForkOutlined />}
+                style={{ 
+                  fontSize: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '28px',
+                  padding: '0 4px'
+                }}
+              >
+                Fork
+              </Button>
+            </Link>
+          </div>
+          
+          <div style={{ display: 'flex', justifyContent: 'flex-end', flex: 1 }}>
+            {onDelete && (
+              <Button 
+                type="text" 
+                danger 
+                icon={<DeleteOutlined />} 
+                onClick={() => onDelete(id)}
+                style={{ 
+                  fontSize: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '28px',
+                  padding: '0 4px'
+                }}
+              >
+                删除
+              </Button>
+            )}
+          </div>
+        </div>
+      )}
+    </Card>
+  );
+};
+
+export default PromptCard;

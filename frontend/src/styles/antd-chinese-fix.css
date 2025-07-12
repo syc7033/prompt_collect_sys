@@ -1,0 +1,112 @@
+/* Ant Design中文文本显示修复 */
+
+/* 针对所有Ant Design组件的修复 */
+.ant-typography,
+.ant-form, .ant-form-item, .ant-form-item-label, .ant-form-item-control,
+.ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-input-textarea,
+.ant-btn, .ant-btn-primary, .ant-btn-default, .ant-btn-text, .ant-btn-link,
+.ant-checkbox, .ant-checkbox-wrapper, .ant-checkbox-inner,
+.ant-radio, .ant-radio-wrapper, .ant-radio-inner,
+.ant-select, .ant-select-selector, .ant-select-selection-item, .ant-select-dropdown, .ant-select-item,
+.ant-dropdown, .ant-dropdown-menu, .ant-dropdown-menu-item,
+.ant-menu, .ant-menu-item, .ant-menu-submenu, .ant-menu-submenu-title,
+.ant-card, .ant-card-head, .ant-card-body,
+.ant-modal, .ant-modal-header, .ant-modal-title, .ant-modal-body, .ant-modal-footer,
+.ant-notification, .ant-notification-notice, .ant-notification-notice-message, .ant-notification-notice-description,
+.ant-message, .ant-message-notice, .ant-message-notice-content,
+.ant-tag, .ant-tag-checkable,
+.ant-table, .ant-table-thead, .ant-table-tbody, .ant-table-cell,
+.ant-pagination, .ant-pagination-item, .ant-pagination-prev, .ant-pagination-next,
+.ant-tabs, .ant-tabs-tab, .ant-tabs-content,
+.ant-layout, .ant-layout-header, .ant-layout-content, .ant-layout-footer,
+.ant-layout-sider, .ant-layout-sider-children,
+.ant-breadcrumb, .ant-breadcrumb-item, .ant-breadcrumb-separator,
+.ant-descriptions, .ant-descriptions-item, .ant-descriptions-item-label, .ant-descriptions-item-content,
+.ant-result, .ant-result-title, .ant-result-subtitle,
+.ant-alert, .ant-alert-message, .ant-alert-description,
+.ant-drawer, .ant-drawer-header, .ant-drawer-title, .ant-drawer-body,
+.ant-popover, .ant-popover-title, .ant-popover-inner-content,
+.ant-tooltip, .ant-tooltip-inner,
+.ant-badge, .ant-badge-count, .ant-badge-dot,
+.ant-avatar, .ant-avatar-string,
+.ant-list, .ant-list-item, .ant-list-item-meta, .ant-list-item-meta-title, .ant-list-item-meta-description,
+.ant-empty, .ant-empty-description,
+.ant-statistic, .ant-statistic-title, .ant-statistic-content,
+.ant-progress, .ant-progress-text,
+.ant-timeline, .ant-timeline-item, .ant-timeline-item-content {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  text-align: initial;
+}
+
+/* 特别针对标题和文本内容 */
+h1.ant-typography, 
+h2.ant-typography, 
+h3.ant-typography, 
+h4.ant-typography, 
+h5.ant-typography, 
+h6.ant-typography,
+span.ant-typography,
+p.ant-typography,
+div.ant-typography,
+.ant-typography div,
+.ant-typography span,
+.ant-typography p {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  text-align: initial;
+}
+
+/* 针对表单标签 */
+.ant-form-item-label > label {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+/* 针对按钮文本 */
+.ant-btn > span {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+/* 针对下拉菜单 */
+.ant-dropdown-menu-title-content {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+/* 针对导航菜单 */
+.ant-menu-title-content {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+/* 针对模态框 */
+.ant-modal-title, 
+.ant-modal-body {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+/* 针对表格 */
+.ant-table-cell {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+/* 针对布局组件 */
+.ant-layout-header,
+.ant-layout-content,
+.ant-layout-footer {
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}

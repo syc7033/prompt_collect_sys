@@ -1,0 +1,132 @@
+/* 全局样式 - 完全重写 */
+* {
+  box-sizing: border-box;
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #f0f2f5;
+  direction: ltr !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  text-align: left !important;
+}
+
+/* 布局样式 */
+.main-layout {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-header {
+  padding: 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+
+.logo {
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
+
+.header-menu {
+  flex: 1;
+}
+
+.user-actions {
+  margin-left: auto;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.login-form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.register-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.tag-select {
+  min-width: 200px;
+}
+
+.prompt-card {
+  margin-bottom: 16px;
+}
+
+.prompt-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.prompt-content-editor {
+  min-height: 200px;
+}
+
+.prompt-history-timeline {
+  margin-top: 20px;
+}
+
+.similar-prompts-list {
+  margin-top: 20px;
+}
+
+.search-form {
+  margin-bottom: 20px;
+}
+
+.tag-cloud {
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  margin-right: 8px;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px 50px;
+  color: rgba(0, 0, 0, 0.65);
+}

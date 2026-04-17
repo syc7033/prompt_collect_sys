@@ -51,16 +51,17 @@ const PromptList: React.FC<PromptListProps> = ({
       <List
         grid={{ gutter: 16, xs: 1, sm: 1, md: 2, lg: 2, xl: 3, xxl: 4 }}
         dataSource={prompts}
+        style={{ overflow: 'visible' }}
         renderItem={(prompt) => {
           // 为每个提示词添加日志
           console.log(`渲染提示词卡片 ID: ${prompt.id}, 标题: ${prompt.title}`);
           console.log(`评分数据: 平均评分=${prompt.average_rating}, 评论数量=${prompt.rating_count}`);
           
           return (
-            <List.Item>
+            <List.Item style={{ height: '100%' }}>
               <PromptCard prompt={prompt} onDelete={onDelete} />
             </List.Item>
-          );
+          );)
         }}
       />
       

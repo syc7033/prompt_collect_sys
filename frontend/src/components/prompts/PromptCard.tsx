@@ -437,6 +437,7 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
         hoverable
         style={{ 
           height: '100%',
+          minHeight: '420px',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden'
@@ -485,10 +486,11 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
       }
       bodyStyle={{
         padding: '16px',
-        paddingBottom: '0', // 移除底部padding，留给按钮区域
+        paddingBottom: '0',
         flex: 1,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        minHeight: 0
       }}
     >
       {/* 标签区域 - 固定高度 */}

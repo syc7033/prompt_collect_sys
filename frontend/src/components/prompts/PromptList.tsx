@@ -63,7 +63,6 @@ const PromptList: React.FC<PromptListProps> = ({
             </List.Item>
           );
         }}
-        }}
       />
       
       {total > pageSize && (

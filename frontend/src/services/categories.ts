@@ -12,6 +12,15 @@ export interface Category {
   updated_at: string;
 }
 
+export interface CategoryTreeNode {
+  id: string;
+  name: string;
+  description?: string;
+  parent_id?: string | null;
+  children?: CategoryTreeNode[];
+}
+
+
 // 确保在处理过程中保留children属性
 export const ensureChildrenProperty = (categories: Category[]): Category[] => {
   console.log('[categories.service] 确保保留children属性，处理前:', categories);

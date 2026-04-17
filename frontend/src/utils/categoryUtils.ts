@@ -1,15 +1,15 @@
-import { Category } from '../services/categories';
+import { Category, CategoryTreeNode } from '../services/categories';
 
 /**
  * 将树形结构的分类数据扁平化为一维数组
- * @param categories 树形结构的分类数据
+ * @param tree 树形结构的分类数据
  * @returns 扁平化后的分类数组
  */
-export function flattenCategoryTree(categories: Category[]): Category[] {
-  console.log('[categoryUtils] 开始扁平化分类树, 原始数据:', categories);
+export const flattenCategoryTree = (tree: CategoryTreeNode[]): CategoryTreeNode[] => {
+  console.log('[categoryUtils] 开始扁平化分类树, 原始数据:', tree);
   
   // 检查分类数据结构
-  const checkCategoryStructure = (cats: Category[]) => {
+  const checkCategoryStructure = (cats: CategoryTreeNode[]) => {
     if (!cats || !cats.length) return;
     
     cats.forEach(cat => {
@@ -29,11 +29,11 @@ export function flattenCategoryTree(categories: Category[]): Category[] {
   };
   
   // 检查分类树结构
-  checkCategoryStructure(categories);
+  checkCategoryStructure(tree);
   
-  let result: Category[] = [];
+  let result: CategoryTreeNode[] = [];
   
-  const traverse = (cats: Category[]) => {
+  const traverse = (cats: CategoryTreeNode[]) => {
     if (!cats || !cats.length) return;
     
     cats.forEach(cat => {
@@ -49,21 +49,21 @@ export function flattenCategoryTree(categories: Category[]): Category[] {
     });
   };
   
-  traverse(categories);
+  traverse(tree);
   console.log('[categoryUtils] 扁平化后的分类数据:', result.length, '条记录');
   return result;
 }
 
 /**
  * 将树形结构转换为级联选择器所需的格式
- * @param categories 树形结构的分类数据
+ * @param tree 树形结构的分类数据
  * @returns 级联选择器所需的数据格式
  */
-export function convertTreeToCascaderOptions(categories: Category[]): any[] {
-  console.log('[categoryUtils] 开始转换分类树为级联选择器格式:', categories);
+export const convertTreeToCascaderOptions = (tree: CategoryTreeNode[]): any[] => {
+  console.log('[categoryUtils] 开始转换分类树为级联选择器格式:', tree);
   
   // 先确保所有分类都有 children 属性
-  const ensureChildren = (cats: Category[]): Category[] => {
+  const ensureChildren = (cats: CategoryTreeNode[]): CategoryTreeNode[] => {
     if (!cats || !cats.length) return [];
     
     return cats.map(cat => {
@@ -85,14 +85,14 @@ export function convertTreeToCascaderOptions(categories: Category[]): any[] {
   };
   
   // 验证分类数据结构
-  const validateCategories = (cats: Category[]) => {
+  const validateCategories = (cats: CategoryTreeNode[]) => {
     if (!cats || !cats.length) {
       console.log('[categoryUtils] 警告: 分类数组为空或不存在');
       return false;
     }
     
     // 深度检查是否有子分类
-    const checkChildrenDeep = (categories: Category[]): boolean => {
+    const checkChildrenDeep = (categories: CategoryTreeNode[]): boolean => {
       if (!categories || !categories.length) return false;
       
       return categories.some(cat => {
@@ -106,7 +106,7 @@ export function convertTreeToCascaderOptions(categories: Category[]): any[] {
     console.log(`[categoryUtils] 分类数据是否包含子分类: ${hasChildrenCategories}`);
     
     // 打印每个分类的子分类数量
-    const logCategoryTree = (categories: Category[], level = 0) => {
+    const logCategoryTree = (categories: CategoryTreeNode[], level = 0) => {
       if (!categories || !categories.length) return;
       
       categories.forEach(cat => {
@@ -129,10 +129,10 @@ export function convertTreeToCascaderOptions(categories: Category[]): any[] {
   };
   
   // 首先确保所有分类都有 children 属性
-  const processedCategories = ensureChildren(categories);
+  const processedCategories = ensureChildren(tree);
   validateCategories(processedCategories);
   
-  const convert = (cats: Category[]): any[] => {
+  const convert = (cats: CategoryTreeNode[]): any[] => {
     if (!cats || !cats.length) {
       console.log('[categoryUtils] convert: 传入的分类数组为空或不存在');
       return [];
@@ -179,7 +179,7 @@ export function convertTreeToCascaderOptions(categories: Category[]): any[] {
  * @param categories 扁平的分类列表
  * @returns 树形结构的分类数据
  */
-export function convertToTreeData(categories: Category[]) {
+export const convertToTreeData = (categories: CategoryTreeNode[]) => {
   console.log('[categoryUtils] 开始转换分类数据，原始数据:', categories);
   
   // 创建节点映射
@@ -230,7 +230,7 @@ export function convertToTreeData(categories: Category[]) {
  * @param categories 所有分类列表
  * @returns 分类路径数组，从根节点到当前分类
  */
-export function getCategoryPath(categoryId: string, categories: Category[]): string[] {
+export const getCategoryPath = (categoryId: string, categories: CategoryTreeNode[]): string[] => {
   if (!categoryId) return [];
   
   const category = categories.find(cat => cat.id === categoryId);
@@ -261,3 +261,4 @@ export function getCategoryNamePath(categoryId: string, categories: Category[]):
     .filter(Boolean)
     .join(' > ');
 }
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Form, Input, Button, Select, Cascader, message, Spin, Typography } from 'antd';
 import { Prompt, PromptCreate, PromptUpdate } from '../../services/prompts';
-import { getCategories, getCategoryTree, Category } from '../../services/categories';
+import { getCategories, getCategoryTree, Category, CategoryTreeNode } from '../../services/categories';
 import { convertToTreeData, getCategoryPath, flattenCategoryTree, convertTreeToCascaderOptions } from '../../utils/categoryUtils';
 
 const { TextArea } = Input;
@@ -13,7 +13,7 @@ interface PromptFormProps {
   onSubmit: (values: PromptCreate | PromptUpdate) => Promise<void>;
   loading: boolean;
   tags?: string[]; // 可选的标签列表，用于下拉选择
-  categories?: Category[]; // 可选的分类列表，用于下拉选择
+  categories?: CategoryTreeNode[]; // 可选的分类列表，用于下拉选择
 }
 
 const PromptForm: React.FC<PromptFormProps> = ({ 
@@ -25,7 +25,7 @@ const PromptForm: React.FC<PromptFormProps> = ({
 }) => {
   const [form] = Form.useForm();
   const [customTags, setCustomTags] = useState<string[]>([]);
-  const [categoryList, setCategoryList] = useState<Category[]>(categories);
+  const [categoryList, setCategoryList] = useState<CategoryTreeNode[]>(categories as CategoryTreeNode[]);
   const [categoryTreeData, setCategoryTreeData] = useState<any[]>([]);
   const [loadingCategories, setLoadingCategories] = useState<boolean>(false);
   
@@ -41,7 +41,7 @@ const PromptForm: React.FC<PromptFormProps> = ({
   };
   
   // 缓存分类数据和最后获取时间
-  const categoriesCache = useRef<{data: Category[], timestamp: number, treeData: any[]}>({data: [], timestamp: 0, treeData: []});
+  const categoriesCache = useRef<{data: CategoryTreeNode[], timestamp: number, treeData: any[]}>({data: [], timestamp: 0, treeData: []});
   const categoriesFetchingRef = useRef<boolean>(false);
   
   // 获取分类列表 - 修改依赖，避免循环依赖
@@ -51,7 +51,7 @@ const PromptForm: React.FC<PromptFormProps> = ({
       console.log('[PromptForm] 使用传入的分类数据:', categories.length);
       setCategoryList(categories);
       // 生成级联选择器数据
-      const cascaderOptions = convertTreeToCascaderOptions(categories);
+      const cascaderOptions = convertTreeToCascaderOptions(categories as CategoryTreeNode[]);
       setCategoryTreeData(cascaderOptions);
     } else {
       // 否则从服务器获取
@@ -91,13 +91,13 @@ const PromptForm: React.FC<PromptFormProps> = ({
       console.log('[PromptForm] 开始处理分类树数据');
       
       // 直接使用 convertTreeToCascaderOptions 处理数据
-      const cascaderOptions = convertTreeToCascaderOptions(data as Category[]);
+      const cascaderOptions = convertTreeToCascaderOptions(data);
       setCategoryTreeData(cascaderOptions);
       console.log('[PromptForm] 转换后的级联选择器数据:', cascaderOptions);
       
       // 扁平化分类树，便于后续处理
-      const flattenedCategories = flattenCategoryTree(data as Category[]);
-      setCategoryList(flattenedCategories);
+      const flattenedCategories = flattenCategoryTree(data);
+      setCategoryList(flattenedCategories as CategoryTreeNode[]);
       console.log(`[PromptForm] 分类结构分析: 扁平化后共 ${flattenedCategories.length} 个分类`);
       
       // 更新缓存
@@ -302,3 +302,4 @@ const PromptForm: React.FC<PromptFormProps> = ({
 };
 
 export default PromptForm;
+

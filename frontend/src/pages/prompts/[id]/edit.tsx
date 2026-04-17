@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Layout from '../../../components/ui/Layout';
 import PromptForm from '../../../components/prompts/PromptForm';
 import { getPromptById, updatePrompt, getPopularTags, Prompt, PromptUpdate, TagCount } from '../../../services/prompts';
-import { getCategoryTree, Category } from '../../../services/categories';
+import { getCategoryTree, Category, CategoryTreeNode } from '../../../services/categories';
 import { useAuth } from '../../../utils/AuthContext';
 
 const { Title, Paragraph } = Typography;
@@ -18,7 +18,7 @@ const EditPromptPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [popularTags, setPopularTags] = useState<string[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<CategoryTreeNode[]>([]);
 
   // 获取提示词详情
   useEffect(() => {

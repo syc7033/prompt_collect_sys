@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Select, Space, message } from 'antd';
-import { createCategory, updateCategory, getCategoryTree, getCategories, Category } from '../../services/categories';
+import { createCategory, updateCategory, getCategoryTree, getCategories, Category, CategoryTreeNode } from '../../services/categories';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -14,7 +14,7 @@ interface CategoryFormProps {
 const CategoryForm: React.FC<CategoryFormProps> = ({ category, onSuccess, onCancel }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<CategoryTreeNode[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(false);
 
   // 获取所有分类，用于选择父分类
@@ -92,7 +92,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ category, onSuccess, onCanc
   };
 
   // 递归渲染分类选项
-  const renderCategoryOptions = (categories: Category[], level = 0, parentPath = '') => {
+  const renderCategoryOptions = (categories: CategoryTreeNode[], level = 0, parentPath = '') => {
     return categories.map(cat => {
       // 编辑模式下，不能选择自己或自己的子分类作为父分类
       const disabled = category && (cat.id === category.id || (parentPath && parentPath.includes(category.id)));

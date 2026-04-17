@@ -41,8 +41,8 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
 
   // 侧边导航栏折叠状态
   const [sideNavCollapsed, setSideNavCollapsed] = useState(false);
-  // 信息面板折叠状态
-  const [infoPanelCollapsed, setInfoPanelCollapsed] = useState(false);
+  // 信息面板折叠状态（默认收起，让主内容区更宽）
+  const [infoPanelCollapsed, setInfoPanelCollapsed] = useState(true);
 
   // 添加日志，跟踪三栏布局的初始状态
   console.log('[Layout] 初始化状态:', { sideNavCollapsed, infoPanelCollapsed });
@@ -206,9 +206,9 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
         console.log('[Layout] 中屏幕模式 (768-1200px)，折叠右侧面板');
         setInfoPanelCollapsed(true);
       } else {
-        console.log('[Layout] 大屏幕模式 (>1200px)，展开两侧面板');
+        console.log('[Layout] 大屏幕模式 (>1200px)，展开左侧面板，右侧默认折叠');
         setSideNavCollapsed(false);
-        setInfoPanelCollapsed(false);
+        setInfoPanelCollapsed(true);
       }
     };
 
@@ -240,10 +240,10 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
             <Link href="/prompts"><a className="simple-nav-item">浏览提示词</a></Link>
             <Link href="/prompts/popular"><a className="simple-nav-item">热门提示词</a></Link>
             {isAuthenticated ? (
-              <Link href="/prompts/create"><a className="simple-nav-item">创建提示词</a></Link>
+              <Link href="/prompts/create"><a className="simple-nav-item simple-nav-create-btn">+ 创建提示词</a></Link>
             ) : (
               <a 
-                className="simple-nav-item" 
+                className="simple-nav-item simple-nav-create-btn" 
                 href="#" 
                 onClick={(e) => {
                   e.preventDefault();
@@ -253,7 +253,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
                   router.push('/auth/login');
                 }}
               >
-                创建提示词
+                + 创建提示词
               </a>
             )}
           </nav>
@@ -361,6 +361,21 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
         
         .simple-nav-item:hover {
           color: #1890ff;
+        }
+
+        .simple-nav-create-btn {
+          background-color: #1890ff;
+          border-radius: 4px;
+          margin: 12px 0 12px 8px;
+          line-height: 40px;
+          padding: 0 16px;
+          font-weight: 500;
+          color: white !important;
+        }
+
+        .simple-nav-create-btn:hover {
+          background-color: #40a9ff !important;
+          color: white !important;
         }
         
         .simple-user-actions {

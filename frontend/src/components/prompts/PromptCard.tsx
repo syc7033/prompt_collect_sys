@@ -627,101 +627,67 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
             flexWrap: 'nowrap',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '8px 16px',
+            padding: '6px 12px',
             backgroundColor: '#fafafa',
             borderTop: '1px solid #f0f0f0',
             marginTop: 'auto',
             borderRadius: '0 0 8px 8px',
-            overflow: 'hidden',
             boxSizing: 'border-box',
             marginLeft: '-16px',
             marginRight: '-16px',
-            width: 'calc(100% + 32px)', // 覆盖卡片的左右内边距
-            height: '50px' // 固定高度确保按钮有足够空间
+            width: 'calc(100% + 32px)',
+            minHeight: '44px'
           }}
         >
           {/* 左侧按钮组 - 查看、复制、应用 */}
-          <div style={{ display: 'flex', justifyContent: 'flex-start', width: '40%', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <Button
               type="text"
               icon={<EyeOutlined />}
               onClick={handleView}
-              title="查看提示词"
-              style={{
-                fontSize: '16px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '32px',
-                width: '32px',
-                padding: '0',
-                minWidth: 'auto'
-              }}
-            />
+              size="small"
+              style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+            >
+              查看
+            </Button>
 
             <Button
               type="text"
               icon={<CopyOutlined />}
               onClick={handleCopy}
               loading={copySuccess}
-              title="复制到剪贴板"
-              style={{
-                fontSize: '16px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '32px',
-                width: '32px',
-                padding: '0',
-                minWidth: 'auto'
-              }}
-            />
+              size="small"
+              style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+            >
+              复制
+            </Button>
 
             <Button
               type="text"
               icon={<SendOutlined />}
               onClick={handleApply}
-              title="应用到AI平台"
-              style={{
-                fontSize: '16px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '32px',
-                width: '32px',
-                padding: '0',
-                minWidth: 'auto'
-              }}
-            />
+              size="small"
+              style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+            >
+              应用
+            </Button>
           </div>
 
-          {/* 中间空白区域 */}
-          <div style={{ width: '10%' }}></div>
-
           {/* 右侧按钮组 - 收藏、fork、编辑、删除 */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', width: '50%', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             {/* 收藏按钮 */}
             {isFavorited ? (
-              // 已收藏状态，显示红色心形，点击取消收藏
               <Button
                 type="text"
                 icon={<HeartFilled style={{ color: '#ff4d4f' }} />}
                 loading={addingToFavorite || checkingFavoriteStatus}
                 onClick={handleFavoriteClick}
-                title="取消收藏"
-                style={{
-                  fontSize: '16px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '32px',
-                  width: '32px',
-                  padding: '0',
-                  minWidth: 'auto'
-                }}
-              />
+                size="small"
+                style={{ fontSize: '12px', padding: '0 6px', height: '28px', color: '#ff4d4f' }}
+              >
+                已收藏
+              </Button>
             ) : (
-              // 未收藏状态，显示白色心形，点击显示收藏夹选择
               <Dropdown
                 overlay={
                   <Menu>
@@ -756,73 +722,42 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
                   type="text"
                   icon={<HeartOutlined />}
                   loading={addingToFavorite || checkingFavoriteStatus}
-                  title="添加到收藏夹"
-                  style={{
-                    fontSize: '16px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '32px',
-                    width: '32px',
-                    padding: '0',
-                    minWidth: 'auto'
-                  }}
-                />
+                  size="small"
+                  style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+                >
+                  收藏
+                </Button>
               </Dropdown>
             )}
+
             <Button
               type="text"
               icon={<ForkOutlined />}
               onClick={async (e) => {
-                e.preventDefault(); // 阻止默认行为
+                e.preventDefault();
                 try {
-                  // 先记录使用行为
                   await recordUsage(id, UsageType.FORK);
-                  console.log('%c[PromptCard] 记录Fork行为成功', 'background: #4CAF50; color: white', { 
-                    promptId: id,
-                    action: 'FORK' 
-                  });
-                  // 成功后再跳转
                   router.push(`/prompts/${id}/fork`);
                 } catch (error) {
-                  console.error('%c[PromptCard] 记录Fork行为失败', 'background: #F44336; color: white', { 
-                    promptId: id,
-                    action: 'FORK',
-                    error: error 
-                  });
                   message.error('操作失败，请稍后重试');
                 }
               }}
-              title="复制并创建新版本"
-              style={{
-                fontSize: '16px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '32px',
-                width: '32px',
-                padding: '0',
-                minWidth: 'auto'
-              }}
-            />
+              size="small"
+              style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+            >
+              Fork
+            </Button>
 
             {creator && creator.id && (
               <Link href={`/prompts/${id}/edit`}>
                 <Button
                   type="text"
                   icon={<EditOutlined />}
-                  title="编辑提示词"
-                  style={{
-                    fontSize: '16px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '32px',
-                    width: '32px',
-                    padding: '0',
-                    minWidth: 'auto'
-                  }}
-                />
+                  size="small"
+                  style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+                >
+                  编辑
+                </Button>
               </Link>
             )}
 
@@ -832,18 +767,11 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
                 danger
                 icon={<DeleteOutlined />}
                 onClick={() => onDelete(id)}
-                title="删除提示词"
-                style={{
-                  fontSize: '16px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '32px',
-                  width: '32px',
-                  padding: '0',
-                  minWidth: 'auto'
-                }}
-              />
+                size="small"
+                style={{ fontSize: '12px', padding: '0 6px', height: '28px' }}
+              >
+                删除
+              </Button>
             )}
           </div>
         </div>

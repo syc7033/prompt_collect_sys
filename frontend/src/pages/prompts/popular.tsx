@@ -143,23 +143,35 @@ const PopularPromptsPage: React.FC = () => {
                 {promptsWithContent.map((prompt, index) => (
                   <Col xs={24} sm={12} md={8} lg={6} key={prompt.prompt_id}>
                     <div style={{ position: 'relative' }}>
-                      <div 
-                        style={{ 
-                          position: 'absolute', 
-                          top: '-10px', 
-                          left: '10px', 
-                          zIndex: 1, 
-                          backgroundColor: index < 3 ? '#ff4d4f' : '#1890ff',
-                          color: 'white',
-                          padding: '2px 8px',
-                          borderRadius: '12px',
-                          fontSize: '12px',
-                          fontWeight: 'bold',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-                        }}
-                      >
-                        <RiseOutlined /> No.{index + 1 + (page - 1) * pageSize}
-                      </div>
+                      {(() => {
+                        const rankIndex = index + (page - 1) * pageSize;
+                        const rankColors: Record<number, string> = {
+                          0: '#d48806', // 金色 - No.1
+                          1: '#8c8c8c', // 银色 - No.2
+                          2: '#ad6800', // 铜色 - No.3
+                        };
+                        const bgColor = rankColors[rankIndex] ?? '#595959';
+                        const rankLabel = rankIndex === 0 ? '🏆 No.1' : `No.${rankIndex + 1}`;
+                        return (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: '-10px',
+                              left: '10px',
+                              zIndex: 1,
+                              backgroundColor: bgColor,
+                              color: 'white',
+                              padding: '2px 8px',
+                              borderRadius: '12px',
+                              fontSize: '12px',
+                              fontWeight: 'bold',
+                              boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                            }}
+                          >
+                            {rankIndex > 0 && <RiseOutlined style={{ marginRight: 2 }} />}{rankLabel}
+                          </div>
+                        );
+                      })()}
                       <PromptCard 
                         prompt={{
                           id: prompt.prompt_id,

@@ -367,11 +367,14 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
         .simple-nav-create-btn {
           background-color: #1890ff;
           border-radius: 4px;
-          margin: 12px 0 12px 8px;
-          line-height: 40px;
+          margin-left: 8px;
+          line-height: 64px;
           padding: 0 16px;
           font-weight: 500;
           color: white !important;
+          display: inline-flex;
+          align-items: center;
+          height: 64px;
         }
 
         .simple-nav-create-btn:hover {

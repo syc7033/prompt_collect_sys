@@ -41,24 +41,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     '/prompts', // 提示词列表页，允许匿名浏览
     '/prompts/popular', // 热门提示词页，允许匿名浏览
     '/auth/login', 
-    '/auth/register', 
-    '/auth/login-simple',
-    '/auth/register-simple',
-    '/public-debug', 
-    '/debug',
-    '/no-auth-debug',
-    '/direct-test',
-    '/simple',
-    '/home-fixed',
-    '/pure-html-test'
+    '/auth/register',
   ];
-  
-  console.log('[AuthContext] 公开路由列表:', publicRoutes);
-  
-  // 打印调试日志
-  console.log('认证上下文加载');
-  console.log('当前路径:', router.pathname);
-  console.log('是否公开路由:', publicRoutes.includes(router.pathname));
 
   // 获取当前用户信息的函数，使用useCallback缓存
   const fetchUser = useCallback(async () => {

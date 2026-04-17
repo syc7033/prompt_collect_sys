@@ -620,6 +620,7 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
           </Col>
         </Row>
       </div>
+      </div>
 
       {/* 按钮区域 */}
       {showActions && (

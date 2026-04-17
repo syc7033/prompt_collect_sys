@@ -437,10 +437,10 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
         hoverable
         style={{ 
           height: '100%',
+          minHeight: '420px',
           display: 'flex',
           flexDirection: 'column',
-          position: 'relative',
-          zIndex: 1
+          overflow: 'hidden'
         }}
   
       title={
@@ -485,14 +485,14 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
         </Space>
       }
       bodyStyle={{
-        padding: '0',
+        padding: '16px',
+        paddingBottom: '0',
         flex: 1,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        minHeight: 0
       }}
     >
-      {/* 内容容器 - 添加 padding */}
-      <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
       {/* 标签区域 - 固定高度 */}
       <div style={{ marginBottom: '12px', height: '32px', overflow: 'hidden' }}>
         <Space size={[0, 8]} wrap>
@@ -620,7 +620,6 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
           </Col>
         </Row>
       </div>
-      </div>
 
       {/* 按钮区域 */}
       {showActions && (
@@ -636,7 +635,9 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onDelete, showActions =
             marginTop: 'auto',
             borderRadius: '0 0 8px 8px',
             boxSizing: 'border-box',
-            width: '100%',
+            marginLeft: '-16px',
+            marginRight: '-16px',
+            width: 'calc(100% + 32px)',
             minHeight: '44px'
           }}
         >

@@ -407,7 +407,6 @@ const PromptDetailPage: React.FC = () => {
       <Layout>
         <Card style={{ marginTop: 24 }}>
           <Skeleton active paragraph={{ rows: 6 }} />
-          <div style={{ display: 'none' }}>{console.log('AUTH_DEBUG: 正在加载提示词详情...')}</div>
         </Card>
       </Layout>
     );
@@ -424,7 +423,6 @@ const PromptDetailPage: React.FC = () => {
             subTitle="您查找的提示词不存在或已被删除"
             extra={<Button type="primary" onClick={() => router.push('/prompts')}>返回提示词列表</Button>}
           />
-          <div style={{ display: 'none' }}>{console.log('AUTH_DEBUG: 提示词不存在或加载失败')}</div>
         </Card>
       </Layout>
     );

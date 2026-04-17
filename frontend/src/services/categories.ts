@@ -153,35 +153,7 @@ export const getCategoryTree = async () => {
     return processedResult;
   } catch (error) {
     console.error('[categories.service] 获取分类树失败:', error);
-    // 模拟数据用于测试
-    console.log('[categories.service] 返回模拟数据用于测试');
-    // 返回一些模拟的分类数据
-    return [
-      {
-        id: '1',
-        name: '前端开发',
-        description: '前端相关的提示词',
-        children: [
-          { id: '1-1', name: 'React', description: 'React相关的提示词' },
-          { id: '1-2', name: 'Vue', description: 'Vue相关的提示词' }
-        ]
-      },
-      {
-        id: '2',
-        name: '后端开发',
-        description: '后端相关的提示词',
-        children: [
-          { id: '2-1', name: 'Python', description: 'Python相关的提示词' },
-          { id: '2-2', name: 'Java', description: 'Java相关的提示词' }
-        ]
-      },
-      {
-        id: '3',
-        name: '数据库',
-        description: '数据库相关的提示词',
-        children: []
-      }
-    ];
+    return [];
   }
 };
 

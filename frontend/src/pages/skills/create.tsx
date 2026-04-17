@@ -178,7 +178,7 @@ const CreateSkillPage: React.FC = () => {
             style={{ width: '100%', maxWidth: 500 }}
             loading={promptsLoading}
             filterOption={(input, option) =>
-              (option?.children as string)?.toLowerCase().includes(input.toLowerCase())
+              String(option?.children ?? '').toLowerCase().includes(input.toLowerCase())
             }
             onSelect={handleAddPrompt}
             value={null}

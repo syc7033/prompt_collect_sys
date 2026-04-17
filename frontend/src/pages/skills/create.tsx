@@ -172,7 +172,7 @@ const CreateSkillPage: React.FC = () => {
         <Divider orientation="left">选择并排序 Prompts</Divider>
 
         <div style={{ marginBottom: 16 }}>
-          <Select
+          <Select<string>
             showSearch
             placeholder="搜索并添加 Prompt..."
             style={{ width: '100%', maxWidth: 500 }}
@@ -181,7 +181,7 @@ const CreateSkillPage: React.FC = () => {
               String(option?.children ?? '').toLowerCase().includes(input.toLowerCase())
             }
             onSelect={handleAddPrompt}
-            value={null}
+            value={undefined}
           >
             {allPrompts
               .filter(p => !selectedPrompts.find(sp => sp.prompt_id === p.id))

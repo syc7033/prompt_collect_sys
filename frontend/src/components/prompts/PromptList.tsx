@@ -61,7 +61,8 @@ const PromptList: React.FC<PromptListProps> = ({
             <List.Item style={{ height: '100%' }}>
               <PromptCard prompt={prompt} onDelete={onDelete} />
             </List.Item>
-          );)
+          );
+        }}
         }}
       />
       

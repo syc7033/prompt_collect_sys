@@ -15,6 +15,11 @@ sys.path.insert(0, '/home/admin/prompt_collect_sys')
 from app.database import SessionLocal
 from app.skills.models import Skill, SkillPrompt
 from app.auth.models import User
+from app.categories.models import Category
+from app.prompts.models import Prompt, PromptHistory
+from app.ratings.models import Rating
+from app.favorites.models import Favorite
+from app.usage.models import Usage
 import uuid
 
 db = SessionLocal()

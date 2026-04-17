@@ -31,6 +31,7 @@ class User(Base):
     ratings = relationship("Rating", back_populates="user")
     helpful_marks = relationship("HelpfulMark", back_populates="user")
     usages = relationship("Usage", back_populates="user", cascade="all, delete-orphan")
+    skills = relationship("Skill", back_populates="author", cascade="all, delete-orphan")
     
     def __repr__(self):
         return f"<User {self.username}>"

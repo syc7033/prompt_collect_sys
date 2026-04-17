@@ -239,6 +239,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'AI提示词知识库
             <Link href="/"><a className="simple-nav-item">首页</a></Link>
             <Link href="/prompts"><a className="simple-nav-item">浏览提示词</a></Link>
             <Link href="/prompts/popular"><a className="simple-nav-item">热门提示词</a></Link>
+            <Link href="/skills"><a className="simple-nav-item">Skills</a></Link>
             {isAuthenticated ? (
               <Link href="/prompts/create"><a className="simple-nav-item simple-nav-create-btn">+ 创建提示词</a></Link>
             ) : (

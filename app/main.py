@@ -19,6 +19,7 @@ from app.categories.routers import router as categories_router
 from app.favorites.routers import router as favorites_router
 from app.stats.routers import router as stats_router
 from app.profile.routers import router as profile_router
+from app.skills.routers import router as skills_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -48,6 +49,7 @@ app.include_router(categories_router, prefix="/api", tags=["分类管理"])
 app.include_router(favorites_router, prefix="/api", tags=["收藏夹"])
 app.include_router(stats_router, prefix="/api", tags=["统计分析"])
 app.include_router(profile_router, prefix="/api", tags=["个人中心"])
+app.include_router(skills_router, prefix="/api/skills", tags=["Skills"])
 
 # 自定义文档路由，使用本地静态文件
 @app.get("/docs", include_in_schema=False)
